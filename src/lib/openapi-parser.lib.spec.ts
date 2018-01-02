@@ -8,7 +8,7 @@ import { parseOpenAPI } from './openapi-parser.lib';
 const refParser = new RefParser();
 const openAPIPath = join(__dirname, '../openapi/test-api.yaml');
 
-describe('parse-openapi.lib', () => {
+describe('openapi-parser.lib', () => {
     let openAPI: OpenAPIObject;
 
     before(async () => {
