@@ -1,0 +1,39 @@
+{
+  "name": "koa-openapi-tools",
+  "version": "1.0.0",
+  "description": "A set of tools aimed to make it easier RESTful API implementations based on OpenAPI specification and Koa.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "test",
+    "test:tdd": "mocha --require ts-node/register --watch --watch-extensions ts ./src/**/*.spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deniszatsepin/koa-openapi-tools.git"
+  },
+  "keywords": [
+    "koa",
+    "koa.js",
+    "openapi",
+    "router",
+    "rest",
+    "middleware",
+    "rest",
+    "api"
+  ],
+  "author": "Denis Zatsepin <denis@zatsepin.me>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/bluebird": "^3.5.19",
+    "@types/chai": "^4.0.10",
+    "@types/koa": "^2.0.43",
+    "@types/mocha": "^2.2.45",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2",
+    "bluebird": "^3.5.1",
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0",
+    "openapi3-ts": "^0.6.2"
+  }
+}
