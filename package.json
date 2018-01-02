@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "test",
-    "test:tdd": "mocha --require ts-node/register --watch --watch-extensions ts ./src/**/*.spec.ts"
+    "test:tdd": "mocha --require ts-node/register --watch --watch-extensions ts ./src/**/*.spec.ts",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -23,17 +24,20 @@
   ],
   "author": "Denis Zatsepin <denis@zatsepin.me>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "json-schema-ref-parser": "^4.0.4"
+  },
   "devDependencies": {
     "@types/bluebird": "^3.5.19",
     "@types/chai": "^4.0.10",
     "@types/koa": "^2.0.43",
     "@types/mocha": "^2.2.45",
-    "ts-node": "^4.1.0",
-    "typescript": "^2.6.2",
     "bluebird": "^3.5.1",
     "chai": "^4.1.2",
     "mocha": "^4.1.0",
-    "openapi3-ts": "^0.6.2"
+    "openapi3-ts": "^0.6.2",
+    "ts-node": "^4.1.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2"
   }
 }
