@@ -14,8 +14,8 @@ describe('handlers-loader.lib', () => {
     const handlersDirectory = join(__dirname, `../../handlers_${Math.floor(Math.random() * 1e5)}`);
     const serviceName = 'accounts';
     const handlerNames = ['controller', 'serializer'];
-    const methods = ['index', 'show', 'create', 'update'];
-    const handlerModuleContent = methods.reduce((file, operation) => {
+    const operations = ['index', 'show', 'create', 'update'];
+    const handlerModuleContent = operations.reduce((file, operation) => {
         return file + `export function ${operation}() {}\n`;
     }, '');
     const handlerPaths = handlerNames
@@ -31,13 +31,13 @@ describe('handlers-loader.lib', () => {
 
         expect(handlers).to.be.not.undefined;
         expect(handlers).has.all.keys(serviceName);
-        expect(handlers[serviceName]).has.all.keys(handlerNames);
+        expect(handlers[serviceName]).has.lengthOf(handlerNames.length);
 
-        handlerNames.forEach(name => {
-            const module = handlers[serviceName][name];
-            expect(module).has.all.keys(methods);
-            methods.forEach(method => {
-                expect(module[method]).to.be.a('function');
+        handlers[serviceName].forEach((handler, i) => {
+            expect(handler.name).is.equal(handlerNames[i]);
+            expect(handler.operations).has.all.keys(operations);
+            operations.forEach(operation => {
+                expect(handler.operations[operation]).to.be.a('function');
             });
         });
     });
