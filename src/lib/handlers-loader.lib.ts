@@ -2,12 +2,15 @@ import { join } from 'path';
 import * as Promise from 'bluebird';
 import { Middleware } from 'koa';
 
-export interface IServicesHandlers {
-    [service: string]: {
-        [handler: string]: {
-            [operation: string]: Middleware | null
-        }
+export interface IHandler {
+    name: string;
+    operations: {
+        [operation: string]: Middleware | null;
     };
+}
+
+export interface IServiceHandlers {
+    [service: string]: Array<IHandler>;
 }
 
 interface IHandlersPaths {
@@ -29,7 +32,7 @@ export function loadHandlers(
     serviceNames: Array<string>,
     servicePaths: string,
     handlers: Array<string>
-): Promise<IServicesHandlers> {
+): Promise<IServiceHandlers> {
     const handlersPaths: IServiceHandlerPaths = serviceNames
         .reduce((acc, serviceName) => ({
             ...acc,
@@ -63,13 +66,11 @@ function getHandlerPaths(
  * @param handlers  handlers description structure where the key is a handler name and
  *                  the value is module absolute path
  */
-function getHandlers(handlers: IHandlersPaths) {
-    return Promise.props(
-        Object.keys(handlers).reduce((acc, handler) => {
-            return {
-                ...acc,
-                [handler]: import(handlers[handler]).catch(_ => null)
-            };
-        }, {})
-    );
+function getHandlers(handlers: IHandlersPaths): Promise<Array<IHandler>> {
+    return Promise.map(Object.keys(handlers), function (handler: string) {
+        return Promise.props({
+            name: handler,
+            operations: import(handlers[handler]).catch(_ => null)
+        });
+    });
 }

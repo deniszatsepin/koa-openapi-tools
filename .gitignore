@@ -1,3 +1,7 @@
+# Temprorary directories
+tmp
+handlers_*
+
 # Logs
 logs
 *.log
