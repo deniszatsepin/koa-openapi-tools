@@ -25,24 +25,24 @@
   "author": "Denis Zatsepin <denis@zatsepin.me>",
   "license": "MIT",
   "dependencies": {
-    "json-schema-ref-parser": "^4.0.4",
-    "koa-router": "^7.3.0"
+    "koa-router": "^7.4.0"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.19",
-    "@types/chai": "^4.0.10",
-    "@types/koa": "^2.0.43",
-    "@types/koa-router": "^7.0.27",
-    "@types/mocha": "^2.2.45",
-    "@types/supertest": "^2.0.4",
+    "@types/bluebird": "^3.5.23",
+    "@types/chai": "^4.1.4",
+    "@types/koa": "^2.0.46",
+    "@types/koa-router": "^7.0.31",
+    "@types/mocha": "^5.2.5",
+    "@types/supertest": "^2.0.5",
     "bluebird": "^3.5.1",
     "chai": "^4.1.2",
-    "koa": "^2.4.1",
-    "mocha": "^4.1.0",
-    "openapi3-ts": "^0.6.2",
-    "supertest": "^3.0.0",
-    "ts-node": "^4.1.0",
-    "tslint": "^5.8.0",
-    "typescript": "^2.6.2"
+    "json-schema-ref-parser": "^5.1.2",
+    "koa": "^2.5.2",
+    "mocha": "^5.2.0",
+    "openapi3-ts": "^0.12.0",
+    "supertest": "^3.1.0",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1"
   }
 }
