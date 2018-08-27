@@ -1,14 +1,8 @@
 import { expect } from 'chai';
+import * as mock from 'mock-require';
 
 import { join } from 'path';
-import { promisify, map } from 'bluebird';
-import { writeFile, unlink, mkdir, rmdir } from 'fs';
-import { loadHandlers } from './handlers-loader.lib';
-
-const mkdirAsync = promisify(mkdir);
-const rmdirAsync = promisify(rmdir);
-const writeFileAsync = promisify(writeFile);
-const unlinkAsync = promisify(unlink);
+import { loadHandlers } from '.';
 
 describe('handlers-loader.lib', () => {
     const handlersDirectory = join(__dirname, `../../handlers_${Math.floor(Math.random() * 1e5)}`);
@@ -16,14 +10,18 @@ describe('handlers-loader.lib', () => {
     const handlerNames = ['controller', 'serializer'];
     const operations = ['index', 'show', 'create', 'update'];
     const handlerModuleContent = operations.reduce((file, operation) => {
-        return file + `export function ${operation}() {}\n`;
-    }, '');
+        return {
+            ...file,
+            [operation]: () => {}
+        };
+    }, {});
     const handlerPaths = handlerNames
-        .map(name => join(handlersDirectory, `${serviceName}.${name}.ts`));
+        .map(name => join(handlersDirectory, `${serviceName}.${name}`));
 
-    before(async () => {
-        await mkdirAsync(handlersDirectory);
-        await map(handlerPaths, (fileName) => writeFileAsync(fileName, handlerModuleContent));
+    before(() => {
+        handlerPaths.forEach((handlerPath) => {
+            mock(handlerPath, handlerModuleContent);
+        });
     });
 
     it('should load handlers', async () => {
@@ -42,8 +40,5 @@ describe('handlers-loader.lib', () => {
         });
     });
 
-    after(async () => {
-        await map(handlerPaths, (fileName) => unlinkAsync(fileName));
-        await rmdirAsync(handlersDirectory);
-    });
+    after(() => mock.stopAll());
 });

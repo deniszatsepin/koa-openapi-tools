@@ -26,6 +26,9 @@
                 "--watch",
                 "--watch-extensions",
                 "ts",
+                "--timeout",
+                "100000",
+                "./**/**/*.spec.ts",
                 "./**/*.spec.ts"
             ],
             "cwd": "${workspaceFolder}/src",
