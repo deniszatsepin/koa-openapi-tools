@@ -1,8 +1,8 @@
 import { Middleware } from 'koa';
 import * as Router from 'koa-router';
-import { IServiceEndpointConfigs, IEndpointConfig } from '../lib/openapi-parser.lib';
-import { IServiceHandlers } from '../lib/handlers-loader.lib';
-import { convertPath } from '../lib/path-converter.lib';
+import { IServiceEndpointConfigs, IEndpointConfig } from 'lib/opeapi-parser';
+import { IServiceHandlers } from '../lib/handlers-loader';
+import { convertPath } from '../lib/path-converter';
 
 export async function createRouter(
     servicesInfo: IServiceEndpointConfigs,

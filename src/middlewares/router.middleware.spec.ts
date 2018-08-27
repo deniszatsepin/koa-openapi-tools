@@ -4,8 +4,8 @@ import * as request from 'supertest';
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import { createRouter } from './router.middleware';
-import { IServiceHandlers } from '../lib/handlers-loader.lib';
-import { IServiceEndpointConfigs } from '../lib/openapi-parser.lib';
+import { IServiceHandlers } from '../lib/handlers-loader';
+import { IServiceEndpointConfigs } from '../lib/opeapi-parser';
 
 const serviceName = 'accounts';
 

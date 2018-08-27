@@ -1,0 +1,18 @@
+openapi: 3.0.1
+paths:
+  /accounts:
+    x-openapi-service-name: accounts
+    get:
+      operationId: index
+      description: index operation
+    post:
+      operationId: create
+      description: create operation
+  /accounts/{id}:
+    x-openapi-service-name: accounts
+    get:
+      operationId: show
+      description: show operation
+    put:
+      operationId: update
+      description: update operation

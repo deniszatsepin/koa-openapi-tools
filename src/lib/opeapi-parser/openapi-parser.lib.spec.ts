@@ -6,7 +6,7 @@ import { OpenAPIObject } from 'openapi3-ts';
 import { parseOpenAPI } from './openapi-parser.lib';
 
 const refParser = new RefParser();
-const openAPIPath = join(__dirname, '../openapi/test-api.yaml');
+const openAPIPath = join(__dirname, './test-api.yaml');
 
 describe('openapi-parser.lib', () => {
     let openAPI: OpenAPIObject;
